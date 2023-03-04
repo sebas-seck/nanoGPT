@@ -1,0 +1,28 @@
+[tool.poetry]
+name = "nanoedGPT"
+version = "0.0"
+description = ""
+authors = []
+
+[tool.poetry.dependencies]
+python = "^3.8"
+Cython = "*"
+datasets = "*"
+future = "*"
+mock = "*"
+pillow = "*"
+testresources = "*"
+tiktoken = "*"
+torch = {file = "torch-1.13.0a0+git7c98e70-cp38-cp38-linux_aarch64.whl"}
+tqdm = "*"
+transformers = "*"
+wandb = "*"
+wheel = "*"
+
+[tool.poetry.dev-dependencies]
+black = "*"
+ruff = "*"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
