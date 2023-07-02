@@ -5,7 +5,7 @@ description = ""
 authors = []
 
 [tool.poetry.dependencies]
-python = "^3.8"
+python = "^3.10"
 Cython = "*"
 datasets = "*"
 future = "*"
@@ -13,7 +13,7 @@ mock = "*"
 pillow = "*"
 testresources = "*"
 tiktoken = "*"
-torch = {file = "torch-1.13.0a0+git7c98e70-cp38-cp38-linux_aarch64.whl"}
+torch = "*"
 tqdm = "*"
 transformers = "*"
 wandb = "*"
