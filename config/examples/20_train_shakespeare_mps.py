@@ -8,7 +8,7 @@ wandb_project = 'shakespeare'
 wandb_run_name = 'train-sp-ex20'
 
 dataset = 'shakespeare'
-# init_from = 'gpt2-medium' # this is the largest GPT-2 model
+# init_from = 'gpt2-medium' # this is the second smallest GPT-2 model
 
 # only save checkpoints if the validation loss improves
 always_save_checkpoint = False

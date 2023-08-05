@@ -5,10 +5,10 @@ eval_interval = 5
 eval_iters = 40
 wandb_log = True
 wandb_project = 'shakespeare'
-wandb_run_name = 'tune-sp-gpt2-medium-ex21'
+wandb_run_name = 'tune-sp-gpt2-ex21'
 
 dataset = 'shakespeare'
-init_from = 'gpt2-medium' # this is the largest GPT-2 model
+init_from = 'gpt2' # this is the smallest GPT-2 model
 
 # only save checkpoints if the validation loss improves
 always_save_checkpoint = False

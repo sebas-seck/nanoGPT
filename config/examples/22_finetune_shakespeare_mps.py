@@ -1,13 +1,13 @@
 import time
 
-out_dir = 'out-bundestag/30'
+out_dir = 'out-shakespeare/22'
 eval_interval = 5
 eval_iters = 40
 wandb_log = True
-wandb_project = 'bundestag'
-wandb_run_name = 'tune-bt-gpt2-medium-ex30'
+wandb_project = 'shakespeare'
+wandb_run_name = 'tune-sp-gpt2-medium-ex22'
 
-dataset = 'bundestag'
+dataset = 'shakespeare'
 init_from = 'gpt2-medium' # this is the second smallest GPT-2 model
 
 # only save checkpoints if the validation loss improves
@@ -18,12 +18,11 @@ always_save_checkpoint = False
 # shakespeare has 301,966 tokens, so 1 epoch ~= 9.2 iters
 batch_size = 1
 gradient_accumulation_steps = 32
-max_iters = 200
+max_iters = 20
 
 # finetune at constant LR
-learning_rate = 0.1
-decay_lr = True
+learning_rate = 3e-5
+decay_lr = False
 
-import torch
-device = 'mps' if  torch.backends.mps.is_available() else 'cpu'
+device = 'mps'  # run on cpu only
 compile = False # do not torch compile the model

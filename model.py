@@ -419,7 +419,8 @@ class GPTGerman(nn.Module):
 
     @classmethod
     def from_pretrained(cls, model_type, override_args=None):
-        assert model_type in {'ger-gpt2', 'ger-gpt2-medium', 'ger-gpt2-large', 'ger-gpt2-xl'}
+        # assert model_type in {'ger-gpt2', 'ger-gpt2-medium', 'ger-gpt2-large', 'ger-gpt2-xl'}
+        assert model_type in {'ger-gpt2'} # , 'ger-gpt2-medium', 'ger-gpt2-large', 'ger-gpt2-xl'}
         override_args = override_args or {} # default to empty dict
         # only dropout can be overridden see more notes below
         assert all(k == 'dropout' for k in override_args)
@@ -429,12 +430,12 @@ class GPTGerman(nn.Module):
         # n_layer, n_head and n_embd are determined from model_type
         config_args = {
             'ger-gpt2':         dict(n_layer=12, n_head=12, n_embd=768),  # 124M params
-            'ger-gpt2-medium':  dict(n_layer=24, n_head=16, n_embd=1024), # 350M params
-            'ger-gpt2-large':   dict(n_layer=36, n_head=20, n_embd=1280), # 774M params
-            'ger-gpt2-xl':      dict(n_layer=48, n_head=25, n_embd=1600), # 1558M params
+            # 'ger-gpt2-medium':  dict(n_layer=24, n_head=16, n_embd=1024), # 350M params
+            # 'ger-gpt2-large':   dict(n_layer=36, n_head=20, n_embd=1280), # 774M params
+            # 'ger-gpt2-xl':      dict(n_layer=48, n_head=25, n_embd=1600), # 1558M params
         }[model_type]
-        print("forcing vocab_size=50257, block_size=1024, bias=True")
-        config_args['vocab_size'] = 50257 # always 50257 for GPT model checkpoints
+        print("forcing vocab_size=50265, block_size=1024, bias=True")
+        config_args['vocab_size'] = 50265 # always 50257 for GPT model checkpoints <- not so for the GerGPT tokenizer!
         config_args['block_size'] = 1024 # always 1024 for GPT model checkpoints
         config_args['bias'] = True # always True for GPT model checkpoints
         # we can override the dropout rate, if desired
@@ -449,7 +450,6 @@ class GPTGerman(nn.Module):
         sd_keys = [k for k in sd_keys if not k.endswith('.attn.bias')] # discard this mask / buffer, not a param
 
         # init a huggingface/transformers model
-        # model_hf = GPT2LMHeadModel.from_pretrained(model_type)
         model_hf = AutoModelForCausalLM.from_pretrained("dbmdz/german-gpt2")
         sd_hf = model_hf.state_dict()
 
