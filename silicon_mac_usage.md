@@ -47,6 +47,13 @@ python train.py config/examples/30_finetune_bundestag_mps.py
 python sample.py --out_dir=out-bundestag/30 --device=mps >> out-bundestag/30/sample.txt
 ```
 
+## 31. Bundestag GermanGPT
+
+```shell
+python train.py config/examples/31_finetune_bundestag_mps.py
+python sample.py --out_dir=out-bundestag/31 --device=mps >> out-bundestag/31/sample.txt
+```
+
 
 ## Tracking with W&B
 
