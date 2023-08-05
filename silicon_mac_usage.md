@@ -39,7 +39,7 @@ python train.py config/examples/21_tune_shakespeare_mps.py
 python sample.py --out_dir=out-shakespeare/21 --device=mps >> out-shakespeare/21/sample.txt
 ```
 
-## 30. Bundestag Beispiel
+## 30. Bundestag 20 iters
 
 ```shell
 python data/bundestag/prepare.py
@@ -47,11 +47,19 @@ python train.py config/examples/30_finetune_bundestag_mps.py
 python sample.py --out_dir=out-bundestag/30 --device=mps >> out-bundestag/30/sample.txt
 ```
 
-## 31. Bundestag GermanGPT
+## 31. Bundestag 200 iters
 
 ```shell
+python data/bundestag/prepare.py
 python train.py config/examples/31_finetune_bundestag_mps.py
-python sample.py --out_dir=out-bundestag/31 --device=mps >> out-bundestag/31/sample.txt
+python sample.py --out_dir=out-bundestag/30 --device=mps >> out-bundestag/30/sample.txt
+```
+
+## 32. Bundestag GermanGPT
+
+```shell
+python train.py config/examples/32_finetune_bundestag_mps.py
+python sample.py --out_dir=out-bundestag/32 --device=mps >> out-bundestag/32/sample.txt
 ```
 
 
