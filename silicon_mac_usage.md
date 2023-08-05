@@ -35,7 +35,7 @@ python sample.py --out_dir=out-shakespeare/20 --device=mps >> out-shakespeare/20
 Medium model works, large not.
 
 ```shell
-python train.py config/21_tune_shakespeare_mps.py
+python train.py config/examples/21_tune_shakespeare_mps.py
 python sample.py --out_dir=out-shakespeare/21 --device=mps >> out-shakespeare/21/sample.txt
 ```
 
@@ -43,7 +43,7 @@ python sample.py --out_dir=out-shakespeare/21 --device=mps >> out-shakespeare/21
 
 ```shell
 python data/bundestag/prepare.py
-python train.py config/finetune_bundestag_mps.py
+python train.py config/examples/30_finetune_bundestag_mps.py
 python sample.py --out_dir=out-bundestag/30 --device=mps >> out-bundestag/30/sample.txt
 ```
 
