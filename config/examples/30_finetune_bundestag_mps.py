@@ -21,9 +21,8 @@ gradient_accumulation_steps = 32
 max_iters = 20
 
 # finetune at constant LR
-learning_rate = 0.1
-decay_lr = True
+learning_rate = 3e-5
+decay_lr = False
 
-import torch
-device = 'mps' if  torch.backends.mps.is_available() else 'cpu'
+device = 'mps'
 compile = False # do not torch compile the model

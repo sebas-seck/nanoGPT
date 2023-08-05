@@ -24,6 +24,5 @@ max_iters = 20
 learning_rate = 3e-5
 decay_lr = False
 
-import torch
-device = 'mps' if  torch.backends.mps.is_available() else 'cpu'
+device = 'mps'
 compile = False # do not torch compile the model

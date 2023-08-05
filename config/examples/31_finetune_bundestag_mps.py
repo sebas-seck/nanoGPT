@@ -20,11 +20,10 @@ batch_size = 1
 gradient_accumulation_steps = 32
 max_iters = 400
 
-learning_rate = 1e-3
-lr_decay_iters = 300
-min_lr = 3e-5 # learning_rate / 10 usually
 decay_lr = True
+learning_rate = 0.1
+decay_rate = 0.975
+decay_steps = 300
 
-import torch
-device = 'mps' if  torch.backends.mps.is_available() else 'cpu'
+device = 'mps'
 compile = False # do not torch compile the model
