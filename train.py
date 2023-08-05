@@ -65,7 +65,9 @@ grad_clip = 1.0 # clip gradients at this value, or disable if == 0.0
 # learning rate decay settings
 decay_lr = True # whether to decay the learning rate
 warmup_iters = 2000 # how many steps to warm up for
-lr_decay_iters = 600000 # should be ~= max_iters per Chinchilla
+# lr_decay_iters = 600000 # should be ~= max_iters per Chinchilla
+decay_steps = 600000
+decay_rate = 0.96
 min_lr = 6e-5 # minimum learning rate, should be ~= learning_rate/10 per Chinchilla
 # DDP settings
 backend = 'nccl' # 'nccl', 'gloo', etc.
@@ -234,18 +236,22 @@ def estimate_loss():
     return out
 
 # learning rate decay scheduler (cosine with warmup)
-def get_lr(it):
-    # 1) linear warmup for warmup_iters steps
-    if it < warmup_iters:
-        return learning_rate * it / warmup_iters
-    # 2) if it > lr_decay_iters, return min learning rate
-    if it > lr_decay_iters:
-        return min_lr
-    # 3) in between, use cosine decay down to min learning rate
-    decay_ratio = (it - warmup_iters) / (lr_decay_iters - warmup_iters)
-    assert 0 <= decay_ratio <= 1
-    coeff = 0.5 * (1.0 + math.cos(math.pi * decay_ratio)) # coeff ranges 0..1
-    return min_lr + coeff * (learning_rate - min_lr)
+# def get_lr(it):
+#     # 1) linear warmup for warmup_iters steps
+#     if it < warmup_iters:
+#         return learning_rate * it / warmup_iters
+#     # 2) if it > lr_decay_iters, return min learning rate
+#     if it > lr_decay_iters:
+#         return min_lr
+#     # 3) in between, use cosine decay down to min learning rate
+#     decay_ratio = (it - warmup_iters) / (lr_decay_iters - warmup_iters)
+#     assert 0 <= decay_ratio <= 1
+#     coeff = 0.5 * (1.0 + math.cos(math.pi * decay_ratio)) # coeff ranges 0..1
+#     return min_lr + coeff * (learning_rate - min_lr)
+
+def decayed_learning_rate(step):
+  # https://keras.io/api/optimizers/learning_rate_schedules/exponential_decay/
+  return learning_rate * decay_rate ** (step / decay_steps)
 
 # logging
 if wandb_log and master_process:
@@ -261,7 +267,7 @@ running_mfu = -1.0
 while True:
 
     # determine and set the learning rate for this iteration
-    lr = get_lr(iter_num) if decay_lr else learning_rate
+    lr = decayed_learning_rate(iter_num) if decay_lr else learning_rate
     for param_group in optimizer.param_groups:
         param_group['lr'] = lr
 
