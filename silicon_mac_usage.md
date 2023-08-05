@@ -1,6 +1,6 @@
 # nanoGPT on Silicon Mac
 
-Tested with Apple M1 Pro.
+Runs on an Apple M1 Pro with 16GB RAM.
 
 ## Environment setup (pyenv)
 
@@ -12,15 +12,34 @@ pyenv activate gpt310
 poetry install --with dev
 ```
 
-## Sharespeare Examples
+## Shakespeare Examples
 
 ### Character-level tokenization
 
 ```shell
 python data/shakespeare_char/prepare.py
-python train.py config/train_shakespeare_char_mps.py --device mps
+python train.py config/train_shakespeare_char_mps.py
 python sample.py --out_dir=out-shakespeare-char --device=mps >> out-shakespeare-char/sample.txt
 ```
+
+### Shakespeare finetuning
+
+Medium model works, large not.
+
+```shell
+python data/shakespeare/prepare.py
+python train.py config/finetune_shakespeare_mps.py
+python sample.py --out_dir=out-shakespeare --device=mps >> out-shakespeare/sample.txt
+```
+
+## Bundestag Beispiel
+
+```shell
+python data/bundestag/prepare.py
+python train.py config/finetune_bundestag_mps.py
+python sample.py --out_dir=out-bundestag --device=mps >> out-bundestag/sample.txt
+```
+
 
 ## Tracking with W&B
 
@@ -31,3 +50,7 @@ brew install colima docker docker-compose
 colima start
 wandb server start
 ```
+
+## Wenn ich local mache
+wandb server start
+wandb login --host=http://localhost:8080

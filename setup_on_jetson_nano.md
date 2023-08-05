@@ -1,3 +1,7 @@
+# Setup on Jetson Nano
+
+- for inference with small models, only
+
 # Steps
 
 1. Start with the [Ubuntu 18.04 image by NVIDIA](https://developer.nvidia.com/embedded/learn/get-started-jetson-nano-devkit#write).
