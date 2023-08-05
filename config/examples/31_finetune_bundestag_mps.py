@@ -3,12 +3,12 @@ import time
 out_dir = 'out-bundestag/31'
 eval_interval = 5
 eval_iters = 40
-wandb_log = False
+wandb_log = True
 wandb_project = 'bundestag'
-wandb_run_name = 'tune-bt-ger-gpt2-ex31'
+wandb_run_name = 'tune-bt-gpt2-medium-ex31'
 
 dataset = 'bundestag'
-init_from = 'ger-gpt2' # this is comparable to the smallest GPT-2 model
+init_from = 'gpt2-medium' # this is the second smallest GPT-2 model
 
 # only save checkpoints if the validation loss improves
 always_save_checkpoint = False
