@@ -9,9 +9,9 @@ log_interval = 10 # don't print too too often
 # we expect to overfit on this small dataset, so only save when val improves
 always_save_checkpoint = False
 
-wandb_log = True # override via command line if you like
+wandb_log = False # override via command line if you like
 wandb_project = 'shakespeare-char'
-wandb_run_name = 'mini-gpt'
+wandb_run_name = 'train-sp-ex10'
 
 dataset = 'shakespeare_char'
 gradient_accumulation_steps = 1
@@ -32,6 +32,6 @@ beta2 = 0.99 # make a bit bigger because number of tokens per iter is small
 
 warmup_iters = 100 # not super necessary potentially
 
-# on macbook also add
-device = 'mps'  # run on cpu only
+import torch
+device = 'mps' if  torch.backends.mps.is_available() else 'cpu'
 compile = False # do not torch compile the model

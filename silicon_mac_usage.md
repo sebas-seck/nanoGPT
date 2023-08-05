@@ -1,4 +1,4 @@
-# nanoGPT on Silicon Mac
+# nanoGPT on (Silicon) Mac
 
 Runs on an Apple M1 Pro with 16GB RAM.
 
@@ -14,12 +14,20 @@ poetry install --with dev
 
 ## Shakespeare Examples
 
-### Character-level tokenization
+### 10. Character-level tokenization
 
 ```shell
 python data/shakespeare_char/prepare.py
-python train.py config/train_shakespeare_char_mps.py
-python sample.py --out_dir=out-shakespeare-char --device=mps >> out-shakespeare-char/sample.txt
+python train.py config/examples/10_train_shakespeare_char_mps.py
+python sample.py --out_dir=out-shakespeare-char/10 --device=mps >> out-shakespeare-char/10/sample.txt
+```
+
+### 20. Shakespeare sub-word encoding
+
+```shell
+python data/shakespeare/prepare.py
+python train.py config/examples/20_train_shakespeare_mps.py
+python sample.py --out_dir=out-shakespeare/20 --device=mps >> out-shakespeare/20/sample.txt
 ```
 
 ### Shakespeare finetuning
@@ -27,17 +35,16 @@ python sample.py --out_dir=out-shakespeare-char --device=mps >> out-shakespeare-
 Medium model works, large not.
 
 ```shell
-python data/shakespeare/prepare.py
-python train.py config/finetune_shakespeare_mps.py
-python sample.py --out_dir=out-shakespeare --device=mps >> out-shakespeare/sample.txt
+python train.py config/21_tune_shakespeare_mps.py
+python sample.py --out_dir=out-shakespeare/21 --device=mps >> out-shakespeare/21/sample.txt
 ```
 
-## Bundestag Beispiel
+## 30. Bundestag Beispiel
 
 ```shell
 python data/bundestag/prepare.py
 python train.py config/finetune_bundestag_mps.py
-python sample.py --out_dir=out-bundestag --device=mps >> out-bundestag/sample.txt
+python sample.py --out_dir=out-bundestag/30 --device=mps >> out-bundestag/30/sample.txt
 ```
 
 

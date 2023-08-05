@@ -5,10 +5,10 @@ eval_interval = 5
 eval_iters = 40
 wandb_log = False # feel free to turn on
 wandb_project = 'shakespeare'
-wandb_run_name = 'ft-gpt2-medium'
+wandb_run_name = 'train-sp-ex20'
 
 dataset = 'shakespeare'
-init_from = 'gpt2-medium' # this is the largest GPT-2 model
+# init_from = 'gpt2-medium' # this is the largest GPT-2 model
 
 # only save checkpoints if the validation loss improves
 always_save_checkpoint = False
@@ -24,5 +24,6 @@ max_iters = 20
 learning_rate = 3e-5
 decay_lr = False
 
-device = 'mps'  # run on cpu only
+import torch
+device = 'mps' if  torch.backends.mps.is_available() else 'cpu'
 compile = False # do not torch compile the model

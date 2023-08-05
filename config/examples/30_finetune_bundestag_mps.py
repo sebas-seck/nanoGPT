@@ -3,9 +3,9 @@ import time
 out_dir = 'out-bundestag'
 eval_interval = 5
 eval_iters = 40
-wandb_log = True # feel free to turn on
+wandb_log = True
 wandb_project = 'bundestag'
-wandb_run_name = 'ft-gpt2-medium'
+wandb_run_name = 'tune-bt-gpt2-medium-ex30'
 
 dataset = 'bundestag'
 init_from = 'gpt2-medium' # this is the largest GPT-2 model
