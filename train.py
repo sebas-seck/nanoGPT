@@ -66,7 +66,7 @@ grad_clip = 1.0 # clip gradients at this value, or disable if == 0.0
 decay_lr = True # whether to decay the learning rate
 warmup_iters = 2000 # how many steps to warm up for
 # lr_decay_iters = 600000 # should be ~= max_iters per Chinchilla
-decay_steps = 600000
+decay_iters = 600000
 decay_rate = 0.96
 min_lr = 6e-5 # minimum learning rate, should be ~= learning_rate/10 per Chinchilla
 # DDP settings
@@ -249,9 +249,10 @@ def estimate_loss():
 #     coeff = 0.5 * (1.0 + math.cos(math.pi * decay_ratio)) # coeff ranges 0..1
 #     return min_lr + coeff * (learning_rate - min_lr)
 
-def decayed_learning_rate(step):
-  # https://keras.io/api/optimizers/learning_rate_schedules/exponential_decay/
-  return learning_rate * decay_rate ** (step / decay_steps)
+def decayed_learning_rate(iter, learning_rate):
+    if iter < decay_iters:
+        learning_rate *= decay_rate
+    return learning_rate
 
 # logging
 if wandb_log and master_process:
@@ -267,7 +268,7 @@ running_mfu = -1.0
 while True:
 
     # determine and set the learning rate for this iteration
-    lr = decayed_learning_rate(iter_num) if decay_lr else learning_rate
+    lr = decayed_learning_rate(iter_num, learning_rate) if decay_lr else learning_rate
     for param_group in optimizer.param_groups:
         param_group['lr'] = lr
 

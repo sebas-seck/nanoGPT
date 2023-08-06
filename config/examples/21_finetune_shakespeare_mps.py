@@ -21,7 +21,7 @@ max_iters = 200
 decay_lr = True
 learning_rate = 0.1
 decay_rate = 0.95
-decay_steps = 150
+decay_iters = 150
 
 device = 'mps'
 compile = False # do not torch compile the model

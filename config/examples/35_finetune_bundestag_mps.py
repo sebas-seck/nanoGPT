@@ -1,12 +1,12 @@
-out_dir = 'out-bundestag/31'
+out_dir = 'out-bundestag-ger/34'
 eval_interval = 5
 eval_iters = 40
 wandb_log = True
-wandb_project = 'bundestag'
-wandb_run_name = 'tune-bt-gpt2-medium-ex31'
+wandb_project = 'bundestag-ger'
+wandb_run_name = 'tune-bt-ger-gpt2-ex34'
 
-dataset = 'bundestag'
-init_from = 'gpt2-medium' # this is the second smallest GPT-2 model
+dataset = 'bundestag_ger'
+init_from = 'ger-gpt2' # this is comparable to the smallest GPT-2 model
 
 # only save checkpoints if the validation loss improves
 always_save_checkpoint = False
@@ -20,7 +20,7 @@ max_iters = 400
 
 decay_lr = True
 learning_rate = 0.1
-decay_rate = 0.975
+decay_rate = 0.87
 decay_iters = 300
 
 device = 'mps'

@@ -1,8 +1,8 @@
 import os
+from transformers import AutoTokenizer
 import numpy as np
-import tiktoken
 
-input_file_path = "data/bundestag_ger/input_bt.txt"
+input_file_path = "data/bundestag/input_bt.txt"
 
 with open(input_file_path, 'r') as f:
     data = f.read()
@@ -10,10 +10,10 @@ n = len(data)
 train_data = data[:int(n*0.9)]
 val_data = data[int(n*0.9):]
 
-# encode with tiktoken gpt2 bpe
-enc = tiktoken.get_encoding("gpt2")
-train_ids = enc.encode_ordinary(train_data)
-val_ids = enc.encode_ordinary(val_data)
+# encode with german-gpt2 tokenizer
+enc = AutoTokenizer.from_pretrained("dbmdz/german-gpt2")
+train_ids = enc.encode(train_data)
+val_ids = enc.encode(val_data)
 print(f"train has {len(train_ids):,} tokens")
 print(f"val has {len(val_ids):,} tokens")
 

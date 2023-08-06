@@ -30,7 +30,7 @@ beta2 = 0.99 # make a bit bigger because number of tokens per iter is small
 decay_lr = True
 learning_rate = 1e-3 # with baby networks can afford to go a bit higher
 decay_rate = 0.99999
-decay_steps = 4000
+decay_iters = 4000
 
 warmup_iters = 100 # not super necessary potentially
 
