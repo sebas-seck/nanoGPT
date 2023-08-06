@@ -47,8 +47,6 @@ python train.py config/examples/33_finetune_bundestag_mps.py
 # 34 Bundestag, longer training, small GerGPT model, high lr
 python train.py config/examples/34_finetune_bundestag_mps.py
 # python sample.py --out_dir=out-bundestag/34 --device=mps >> out-bundestag/34/sample.txt
-
-python train.py config/examples/10_train_shakespeare_char_mps.py
 ```
 
 ## Tracking Lokal ansehen
