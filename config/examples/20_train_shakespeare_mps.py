@@ -1,5 +1,3 @@
-import time
-
 out_dir = 'out-shakespeare/20'
 eval_interval = 5
 eval_iters = 40

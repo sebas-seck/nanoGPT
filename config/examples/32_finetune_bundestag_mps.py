@@ -1,5 +1,3 @@
-import torch
-
 out_dir = 'out-bundestag/32'
 eval_interval = 5
 eval_iters = 40

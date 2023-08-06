@@ -30,15 +30,25 @@ python sample.py --out_dir=out-shakespeare/22 --device=mps >> out-shakespeare/22
 
 # 30 Bundestag, quick training, medium model
 python train.py config/examples/30_finetune_bundestag_mps.py
-python sample.py --out_dir=out-bundestag/30 --device=mps >> out-bundestag/30/sample.txt
+# python sample.py --out_dir=out-bundestag/30 --device=mps >> out-bundestag/30/sample.txt
 
-# 31 Bundestag, longer training, medium model
+# 31 Bundestag, longer training, medium model, high lr
 python train.py config/examples/31_finetune_bundestag_mps.py
-python sample.py --out_dir=out-bundestag/31 --device=mps >> out-bundestag/31/sample.txt
+# python sample.py --out_dir=out-bundestag/31 --device=mps >> out-bundestag/31/sample.txt
 
-# 32
+# 32 Bundestag, longer training, small GerGPT model, high lr
 python train.py config/examples/32_finetune_bundestag_mps.py
-python sample.py --out_dir=out-bundestag/32 --device=mps >> out-bundestag/32/sample.txt
+# python sample.py --out_dir=out-bundestag/32 --device=mps >> out-bundestag/32/sample.txt
+
+# 33 Bundestag, longer training, medium model, improved lr
+python train.py config/examples/33_finetune_bundestag_mps.py
+# python sample.py --out_dir=out-bundestag/33 --device=mps >> out-bundestag/33/sample.txt
+
+# 34 Bundestag, longer training, small GerGPT model, high lr
+python train.py config/examples/34_finetune_bundestag_mps.py
+# python sample.py --out_dir=out-bundestag/34 --device=mps >> out-bundestag/34/sample.txt
+
+python train.py config/examples/10_train_shakespeare_char_mps.py
 ```
 
 ## Tracking Lokal ansehen
@@ -46,10 +56,13 @@ python sample.py --out_dir=out-bundestag/32 --device=mps >> out-bundestag/32/sam
 Hier den lokalen API Key angeben, nicht den aus der Cloud Version die benötigt wird, um die kostenlose Lizenz zu organisieren. Warum einfach...
 
 ```shell
+colima start
 wandb server start
 wandb login --host=http://localhost:8080  --relogin
+wandb status # check the host is the localhost
 wandb sync --sync-all
 wandb sync --clean
+colima stop
 ```
 
 
