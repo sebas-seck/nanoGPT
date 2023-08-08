@@ -250,9 +250,7 @@ def estimate_loss():
 #     return min_lr + coeff * (learning_rate - min_lr)
 
 def decayed_learning_rate(iter, learning_rate):
-    if iter < decay_iters:
-        learning_rate *= decay_rate
-    return learning_rate
+    return learning_rate * decay_rate ** (min(iter, decay_iters))
 
 # logging
 if wandb_log and master_process:
@@ -337,7 +335,7 @@ while True:
         if local_iter_num >= 5: # let the training loop settle a bit
             mfu = raw_model.estimate_mfu(batch_size * gradient_accumulation_steps, dt)
             running_mfu = mfu if running_mfu == -1.0 else 0.9*running_mfu + 0.1*mfu
-        print(f"iter {iter_num}: loss {lossf:.4f}, time {dt*1000:.2f}ms, mfu {running_mfu*100:.2f}%")
+        print(f"iter {iter_num}: loss {lossf:.4f}, time {dt*1000:.2f}ms, mfu {running_mfu*100:.2f}%, lr {lr:.7f}")
     iter_num += 1
     local_iter_num += 1
 

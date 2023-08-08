@@ -21,8 +21,8 @@ seed = 1337
 device = 'cpu' # examples: 'cpu', 'cuda', 'cuda:0', 'cuda:1', etc.
 dtype = 'bfloat16' if torch.cuda.is_available() and torch.cuda.is_bf16_supported() else 'float16' # 'float32' or 'bfloat16' or 'float16'
 compile = False # use PyTorch 2.0 to compile the model to be faster
-exec(open('configurator.py').read()) # overrides from command line or config file
 ger_encoding = False
+exec(open('configurator.py').read()) # overrides from command line or config file
 # -----------------------------------------------------------------------------
 
 torch.manual_seed(seed)
@@ -70,7 +70,7 @@ if load_meta:
     decode = lambda l: ''.join([itos[i] for i in l])
 elif ger_encoding:
     enc = AutoTokenizer.from_pretrained("dbmdz/german-gpt2")
-    encode = lambda s: enc.encode(s, add_special_tokens={"<|endoftext|>"})
+    encode = lambda s: enc.encode(s)
     decode = lambda l: enc.decode(l)
 else:
     # ok let's assume gpt-2 encodings by default

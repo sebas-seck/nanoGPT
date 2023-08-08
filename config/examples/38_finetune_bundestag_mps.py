@@ -1,9 +1,9 @@
-out_dir = 'out-bundestag-ger/35'
+out_dir = 'out-bundestag-ger/38'
 eval_interval = 5
 eval_iters = 40
 wandb_log = True
 wandb_project = 'bundestag-ger'
-wandb_run_name = 'tune-bt-ger-gpt2-ex35'
+wandb_run_name = 'tune-bt-ger-gpt2-ex38'
 
 dataset = 'bundestag_ger'
 init_from = 'ger-gpt2' # this is comparable to the smallest GPT-2 model
@@ -16,10 +16,12 @@ always_save_checkpoint = False
 # shakespeare has 301,966 tokens, so 1 epoch ~= 9.2 iters
 batch_size = 1
 gradient_accumulation_steps = 32
-max_iters = 400
+max_iters = 500
 
-decay_lr = False
-learning_rate = 3e-5
+decay_lr = True
+learning_rate = 3e-2
+decay_rate = 0.977237
+decay_iters = 300
 
 device = 'mps'
 compile = False # do not torch compile the model
