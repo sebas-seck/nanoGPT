@@ -59,15 +59,16 @@ python sample.py --out_dir=out-bundestag-ger/36 --ger_encoding=True >> out-bunde
 
 # 37 Bundestag, comparable to 36 but with non-GER model
 python train.py config/examples/37_finetune_bundestag_mps.py
-python sample.py --out_dir=out-bundestag-ger/37 --ger_encoding=True >> out-bundestag-ger/37/sample.txt
+python sample.py --out_dir=out-bundestag/37 --ger_encoding >> out-bundestag/37/sample.txt
+# python sample.py --out_dir=out-bundestag/37 --ger_encoding >> out-bundestag/37/sample.txt # <- wie sieht das aus?>
 
-# 38 Bundestag, even longer, GerGPT, start at 0.03, decay to 0.00003 after 300 iter
+# 38 Bundestag, even longer, GerGPT, start at 0.01, decay to 0.00003 after 300 iter
 python train.py config/examples/38_finetune_bundestag_mps.py
-python sample.py --out_dir=out-bundestag-ger/38 --ger_encoding=True >> out-bundestag-ger/38/sample.txt
+# python sample.py --out_dir=out-bundestag-ger/38 --ger_encoding=True >> out-bundestag-ger/38/sample.txt
 
 # 40 Bundestag, same as 38 but from scratch
 python train.py config/examples/40_train_bundestag_mps.py
-python sample.py --out_dir=out-bundestag-ger/40 --ger_encoding=True >> out-bundestag-ger/40/sample.txt
+# python sample.py --out_dir=out-bundestag-ger/40 --ger_encoding=True >> out-bundestag-ger/40/sample.txt
 ```
 
 ## Tracking Lokal ansehen
@@ -80,7 +81,6 @@ wandb server start
 wandb login --host=http://localhost:8080  --relogin
 wandb status # in case you want to check the host is the localhost
 wandb sync --sync-all
-wandb sync --clean
 wandb server stop
 colima stop
 ```

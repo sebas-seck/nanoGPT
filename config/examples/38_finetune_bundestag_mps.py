@@ -19,8 +19,8 @@ gradient_accumulation_steps = 32
 max_iters = 500
 
 decay_lr = True
-learning_rate = 3e-2
-decay_rate = 0.977237
+learning_rate = 1e-2
+decay_rate = 0.980822
 decay_iters = 300
 
 device = 'mps'
