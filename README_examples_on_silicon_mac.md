@@ -68,6 +68,10 @@ python sample.py --out_dir=out-bundestag-ger/38 --ger_encoding=True >> out-bunde
 # 40 Bundestag, same as 38 but from scratch
 python train.py config/examples/40_train_bundestag_mps.py
 python sample.py --out_dir=out-bundestag-ger/40 --ger_encoding=True >> out-bundestag-ger/40/sample.txt
+
+# 41 Bundestag, from scratch but longer and lower initial lr
+python train.py config/examples/41_train_bundestag_mps.py
+python sample.py --out_dir=out-bundestag-ger/41 --ger_encoding=True >> out-bundestag-ger/41/sample.txt
 ```
 
 ## Tracking Lokal ansehen
