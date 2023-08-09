@@ -25,9 +25,9 @@ python sample.py --out_dir=out-shakespeare/20 >> out-shakespeare/20/sample.txt
 python train.py config/examples/21_finetune_shakespeare_mps.py
 python sample.py --out_dir=out-shakespeare/21 >> out-shakespeare/21/sample.txt
 
-# 21 Shakespeare sub-word encoding, larger model
-python train.py config/examples/22_tune_shakespeare_mps.py
-python sample.py --out_dir=out-shakespeare/22 >> out-shakespeare/22/sample.txt
+# 23 Shakespeare sub-word encoding, larger model
+python train.py config/examples/23_finetune_shakespeare_mps.py
+python sample.py --out_dir=out-shakespeare/22 >> out-shakespeare/23/sample.txt
 
 # 30 Bundestag, quick training, medium model
 python train.py config/examples/30_finetune_bundestag_mps.py
@@ -39,7 +39,7 @@ python sample.py --out_dir=out-bundestag/31 >> out-bundestag/31/sample.txt
 
 # 32 Bundestag, longer training, small GerGPT model, high lr
 python train.py config/examples/32_finetune_bundestag_mps.py
-python sample.py --out_dir=out-bundestag/32 >> out-bundestag/32/sample.txt
+python sample.py --out_dir=out-bundestag/32 --ger_encoding=True >> out-bundestag/32/sample.txt
 
 # 33 Bundestag, longer training, medium model, improved lr
 python train.py config/examples/33_finetune_bundestag_mps.py
@@ -47,7 +47,7 @@ python sample.py --out_dir=out-bundestag/33 >> out-bundestag/33/sample.txt
 
 # 34 Bundestag, longer training, small GerGPT model, high lr, gpt2 encoding
 python train.py config/examples/34_finetune_bundestag_mps.py
-python sample.py --out_dir=out-bundestag/34 >> out-bundestag/34/sample.txt
+python sample.py --out_dir=out-bundestag/34 --ger_encoding=True >> out-bundestag/34/sample.txt
 
 # 35 Bundestag, longer training, small GerGPT model, constant small lr, ger-gpt2 encoding
 python train.py config/examples/35_finetune_bundestag_mps.py
